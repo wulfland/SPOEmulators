@@ -8,7 +8,7 @@
     <owners>$author$</owners>
     <licenseUrl>http://writeabout.net</licenseUrl>
     <projectUrl>https://github.com/wulfland/SPOEmulators</projectUrl>
-    <iconUrl>http://wp.me/a3AlMw-6P</iconUrl>
+    <iconUrl>https://github.com/wulfland/SPOEmulators/blob/master/src/SPOEmulators/SPOEmulators_Logo_32_32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
