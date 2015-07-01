@@ -42,13 +42,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SPOEmulators.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="SPOEmulators_Logo.png" />
     <Content Include="SPOEmulators_Logo_32_32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SPOEmulators.nuspec" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)..\lib\nuget.exe pack $(ProjectPath) -OutputDirectory $(TargetDir) -BasePath $(ProjectDir)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
