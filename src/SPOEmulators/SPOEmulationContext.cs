@@ -1,7 +1,9 @@
 ﻿namespace SPOEmulators
 {
     using System;
-    using Microsoft.QualityTools.Testing.Fakes;
+using Microsoft.QualityTools.Testing.Fakes;
+using Microsoft.SharePoint.Client;
+using SPOEmulators.EmulatedTypes;
     //using SPOEmulators.EmulatedTypes;
 
     /// <summary>
@@ -9,8 +11,9 @@
     /// </summary>
     public class SPOEmulationContext : IDisposable
     {
-        readonly IDisposable shimContext;
+        readonly IDisposable shimsContext;
         readonly IsolationLevel isolationLevel;
+        ClientContext clientContext;
         bool disposed;
 
         /// <summary>
@@ -25,6 +28,21 @@
             get
             {
                 return isolationLevel;
+            }
+        }
+
+        /// <summary>
+        /// Gets the current client context.
+        /// </summary>
+        /// <value>
+        /// The current client context.
+        /// </value>
+        public ClientContext ClientContext
+        {
+            [System.Diagnostics.DebuggerStepThrough]
+            get
+            {
+                return clientContext;
             }
         }
 
@@ -49,18 +67,19 @@
             {
                 case IsolationLevel.Fake:
                     // create shim context
-                    shimContext = ShimsContext.Create();
+                    shimsContext = ShimsContext.Create();
 
                     // initialize all simulated types
                     InitializeSimulatedAPI();
 
                     // Set reference to the simulated site and web in the context
                     //site = SPContext.Current.Site;
-                    //web = SPContext.Current.Web;
+                    // web = SPContext.Current.Web;
+                    clientContext = new SimClientContext().Instance;
                     break;
                 case IsolationLevel.Integration:
                     // create shim context
-                    shimContext = ShimsContext.Create();
+                    shimsContext = ShimsContext.Create();
 
                     // Load the real spite and spweb objects from sharpoint
                     //site = new SPSite(url);
@@ -85,6 +104,9 @@
 
         private static void InitializeSimulatedAPI()
         {
+            SimClientContext.Initialize();
+            SimWeb.Initialize();
+
             //SimHttpContext.Initialize();
             //SimHttpRequest.Initialize();
             //SimHttpResponse.Initialize();
@@ -133,8 +155,8 @@
         {
             if (!disposed)
             {
-                if (shimContext != null)
-                    shimContext.Dispose();
+                if (shimsContext != null)
+                    shimsContext.Dispose();
 
                 disposed = true;
             }

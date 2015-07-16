@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPOEmulators.Tests", "SPOEmulators.Tests\SPOEmulators.Tests.csproj", "{06D1AEB0-4D8B-4757-A5FD-E6D6432FB0C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_15|Any CPU = Debug_15|Any CPU
@@ -26,6 +28,14 @@ Global
 		{C8CFD6F8-9C2E-4FDC-B209-548DCCCF20BF}.Release_15|Any CPU.Build.0 = Release15|Any CPU
 		{C8CFD6F8-9C2E-4FDC-B209-548DCCCF20BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8CFD6F8-9C2E-4FDC-B209-548DCCCF20BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06D1AEB0-4D8B-4757-A5FD-E6D6432FB0C9}.Debug_15|Any CPU.ActiveCfg = Debug|Any CPU
+		{06D1AEB0-4D8B-4757-A5FD-E6D6432FB0C9}.Debug_15|Any CPU.Build.0 = Debug|Any CPU
+		{06D1AEB0-4D8B-4757-A5FD-E6D6432FB0C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06D1AEB0-4D8B-4757-A5FD-E6D6432FB0C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06D1AEB0-4D8B-4757-A5FD-E6D6432FB0C9}.Release_15|Any CPU.ActiveCfg = Release|Any CPU
+		{06D1AEB0-4D8B-4757-A5FD-E6D6432FB0C9}.Release_15|Any CPU.Build.0 = Release|Any CPU
+		{06D1AEB0-4D8B-4757-A5FD-E6D6432FB0C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06D1AEB0-4D8B-4757-A5FD-E6D6432FB0C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
