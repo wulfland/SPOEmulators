@@ -16,5 +16,30 @@ namespace SPOEmulators.Tests
                 context.ClientContext.ExecuteQuery();
             }
         }
+
+        [TestMethod]
+        public void SimWeb_can_change_web_title()
+        {
+            using (var context = new SPOEmulationContext(IsolationLevel.Fake))
+            {
+                // Get title
+                context.ClientContext.Load(context.ClientContext.Web, w => w.Title);
+                context.ClientContext.ExecuteQuery();
+                var originalTitle = context.ClientContext.Web.Title;
+                Assert.IsNotNull(originalTitle);
+
+                // set title to something different
+                context.ClientContext.Web.Title = "A new Title that is applied";
+                context.ClientContext.ExecuteQuery();
+
+                context.ClientContext.Load(context.ClientContext.Web, w => w.Title);
+                context.ClientContext.ExecuteQuery();
+                Assert.AreEqual("A new Title that is applied", context.ClientContext.Web.Title);
+
+                // set title back
+                context.ClientContext.Web.Title = originalTitle;
+                context.ClientContext.ExecuteQuery();
+            }   
+        }
     }
 }

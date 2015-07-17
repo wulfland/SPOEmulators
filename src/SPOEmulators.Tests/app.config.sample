@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="SPOEmulators.Tests.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <applicationSettings>
+        <SPOEmulators.Tests.Properties.Settings>
+            <setting name="OnPremUrl" serializeAs="String">
+                <!-- Enter thr url to a on prem site for integration testing. -->
+                <value>https://localhost/sites/dev</value>
+            </setting>
+            <!-- Enter thr url to a O365 site for integration testing. -->
+            <setting name="O365Url" serializeAs="String">
+                <value>http://xxxx.sharepoint.com</value>
+            </setting>
+            <!-- Enter credentials to connect to the site (O365 or on prem if neccessary) -->
+            <setting name="O365User" serializeAs="String">
+                <value>user@tenant.onmicrosoft.com</value>
+            </setting>
+            <setting name="O365Password" serializeAs="String">
+                <value>****</value>
+            </setting>
+        </SPOEmulators.Tests.Properties.Settings>
+    </applicationSettings>
+</configuration>

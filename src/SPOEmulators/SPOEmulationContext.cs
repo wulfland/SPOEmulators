@@ -1,6 +1,7 @@
 ﻿namespace SPOEmulators
 {
     using System;
+    using System.Net;
     using Microsoft.QualityTools.Testing.Fakes;
     using Microsoft.SharePoint.Client;
     using SPOEmulators.EmulatedTypes;
@@ -11,10 +12,10 @@
     /// </summary>
     public class SPOEmulationContext : IDisposable
     {
-        readonly IDisposable    _shimsContext;
+        readonly IDisposable _shimsContext;
         readonly IsolationLevel _isolationLevel;
-        ClientContext           _clientContext;
-        bool                    _disposed;
+        ClientContext _clientContext;
+        bool _disposed;
 
         /// <summary>
         /// Gets the isolation level.
@@ -51,7 +52,7 @@
         /// </summary>
         /// <param name="isolationLevel">The level.</param>
         public SPOEmulationContext(IsolationLevel isolationLevel)
-            : this(isolationLevel, null)
+            : this(isolationLevel, new ConnectionInformation())
         {
         }
 
@@ -59,7 +60,18 @@
         /// Initializes a new instance of the <see cref="SPOEmulationContext"/> class.
         /// </summary>
         /// <param name="isolationLevel">The level.</param>
+        /// <param name="url">The url of the target web.</param>
         public SPOEmulationContext(IsolationLevel isolationLevel, string url)
+            : this(isolationLevel, new ConnectionInformation { Url = new Uri(url) })
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SPOEmulationContext"/> class.
+        /// </summary>
+        /// <param name="isolationLevel">The level.</param>
+        /// <param name="connectionInformation">The connection informations for the target web.</param>
+        public SPOEmulationContext(IsolationLevel isolationLevel, ConnectionInformation connectionInformation)
         {
             this._isolationLevel = isolationLevel;
 
@@ -80,8 +92,7 @@
                 case IsolationLevel.Integration:
                     // create shim context
                     _shimsContext = ShimsContext.Create();
-
-                    _clientContext = new ClientContext(url);
+                    Connect(connectionInformation);
 
                     // Load the real spite and spweb objects from sharpoint
                     //site = new SPSite(url);
@@ -95,7 +106,7 @@
                     //};
                     break;
                 case IsolationLevel.None:
-                    _clientContext = new ClientContext(url);
+                    Connect(connectionInformation);
                     break;
                 default:
                     throw new InvalidOperationException();
@@ -162,6 +173,34 @@
                     _shimsContext.Dispose();
 
                 _disposed = true;
+            }
+        }
+
+        private void Connect(ConnectionInformation connectionInformation)
+        {
+            try
+            {
+                _clientContext = new ClientContext(connectionInformation.Url.AbsoluteUri);
+
+                if (!string.IsNullOrWhiteSpace(connectionInformation.UserName))
+                {
+                    if (connectionInformation.ConnectionType == ConnectionType.O365)
+                    {
+                        _clientContext.Credentials = new SharePointOnlineCredentials(connectionInformation.UserName, connectionInformation.Password);
+                    }
+                    else
+                    {
+                        _clientContext.Credentials = new NetworkCredential(connectionInformation.UserName, connectionInformation.Password);
+                    }
+                }
+
+                _clientContext.ExecuteQuery();
+            }
+            catch (Exception ex)
+            {
+                var msg = "Error connecting to the {0} site {1} with the given credentials. {2}";
+                var format = string.Format(msg, connectionInformation.ConnectionType, connectionInformation.Url.AbsoluteUri, ex.Message);
+                throw new InvalidOperationException(format);
             }
         }
     }

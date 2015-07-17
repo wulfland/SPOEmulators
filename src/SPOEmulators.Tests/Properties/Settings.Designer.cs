@@ -31,5 +31,32 @@ namespace SPOEmulators.Tests.Properties {
                 return ((string)(this["OnPremUrl"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://alegrivm.sharepoint.com")]
+        public string O365Url {
+            get {
+                return ((string)(this["O365Url"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mikek@alegriVM.onmicrosoft.com")]
+        public string O365User {
+            get {
+                return ((string)(this["O365User"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DaLe1sKeP0H$")]
+        public string O365Password {
+            get {
+                return ((string)(this["O365Password"]));
+            }
+        }
     }
 }
