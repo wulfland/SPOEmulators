@@ -18,7 +18,7 @@ namespace SPOEmulators.Tests
         }
 
         [TestMethod]
-        public void SimWeb_can_change_web_title()
+        public void SimWeb_can_change_web_title_fake()
         {
             using (var context = new SPOEmulationContext(IsolationLevel.Fake))
             {

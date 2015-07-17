@@ -116,6 +116,7 @@
         private static void InitializeSimulatedAPI()
         {
             SimClientContext.Initialize();
+            SimClientContext.Initialize();
             SimWeb.Initialize();
 
             //SimHttpContext.Initialize();

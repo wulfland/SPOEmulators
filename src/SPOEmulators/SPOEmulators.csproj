@@ -75,6 +75,10 @@
           <SpecificVersion>False</SpecificVersion>
           <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.16.0.0.0.Fakes.dll</HintPath>
         </Reference>
+        <Reference Include="Microsoft.SharePoint.Client.Runtime.16.0.0.0.Fakes">
+          <SpecificVersion>False</SpecificVersion>
+          <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.Runtime.16.0.0.0.Fakes.dll</HintPath>
+        </Reference>
       </ItemGroup>
     </When>
     <Otherwise>
@@ -91,6 +95,10 @@
           <SpecificVersion>False</SpecificVersion>
           <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.15.0.0.0.Fakes</HintPath>
         </Reference>
+        <Reference Include="Microsoft.SharePoint.Client.Runtime.15.0.0.0.Fakes">
+          <SpecificVersion>False</SpecificVersion>
+          <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.Runtime.15.0.0.0.Fakes.dll</HintPath>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -98,6 +106,7 @@
     <Compile Include="CollectionIsolator.cs" />
     <Compile Include="ConnectionInformation.cs" />
     <Compile Include="EmulatedTypes\SimClientContext.cs" />
+    <Compile Include="EmulatedTypes\SimClientRuntimeContext.cs" />
     <Compile Include="EmulatedTypes\SimWeb.cs" />
     <Compile Include="ICanIsolate.cs" />
     <Compile Include="IsolationLevel.cs" />
@@ -111,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Fakes Include="Fakes\Microsoft.SharePoint.Client.fakes" />
+    <Fakes Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />
     <None Include="SPOEmulators.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
