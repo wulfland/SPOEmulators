@@ -9,28 +9,34 @@ namespace SPOEmulators.Tests
         [TestMethod]
         public void SPOEmulationContext_creates_shimContext_for_fake()
         {
-            var sut = new SPOEmulationContext(IsolationLevel.Fake);
-            var shimsContext = new PrivateObject(sut).GetField("_shimsContext");
+            using (var sut = new SPOEmulationContext(IsolationLevel.Fake))
+            {
+                var shimsContext = new PrivateObject(sut).GetField("_shimsContext");
 
-            Assert.IsNotNull(shimsContext);
+                Assert.IsNotNull(shimsContext);
+            }
         }
 
         [TestMethod]
         public void SPOEmulationContext_creates_shimContext_for_integration()
         {
-            var sut = new SPOEmulationContext(IsolationLevel.Integration, Settings.Default.OnPremUrl);
-            var shimsContext = new PrivateObject(sut).GetField("_shimsContext");
+            using (var sut = new SPOEmulationContext(IsolationLevel.Integration, Settings.Default.OnPremUrl))
+            {
+                var shimsContext = new PrivateObject(sut).GetField("_shimsContext");
 
-            Assert.IsNotNull(shimsContext);
+                Assert.IsNotNull(shimsContext);
+            }
         }
 
         [TestMethod]
         public void SPOEmulationContext_does_NOT_create_shimContext_for_none()
         {
-            var sut = new SPOEmulationContext(IsolationLevel.None, Settings.Default.OnPremUrl);
-            var shimsContext = new PrivateObject(sut).GetField("_shimsContext");
+            using (var sut = new SPOEmulationContext(IsolationLevel.None, Settings.Default.OnPremUrl))
+            {
+                var shimsContext = new PrivateObject(sut).GetField("_shimsContext");
 
-            Assert.IsNull(shimsContext);
+                Assert.IsNull(shimsContext);
+            }
         }
     }
 }
