@@ -54,7 +54,7 @@
             shimClientContext.ExecuteQuery = () => { };
             shimClientContext.WebGet = () => this.Web;
 
-
+            var shimRuntimeClientContext = new SimClientRuntimeContext(this.Instance);
 
             this.Fake = shimClientContext;
         }

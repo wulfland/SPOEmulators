@@ -30,6 +30,7 @@
             : base(instance)
         {
 
+            // http://sharepoint.stackexchange.com/questions/73538/mocking-client-object-models-clientcontext-with-moles
             var shimClientRuntimeContext = new ShimClientRuntimeContext(instance);
             shimClientRuntimeContext.LoadOf1M0ExpressionOfFuncOfM0ObjectArray<Web>((a, b) => { });
 
