@@ -1,20 +1,20 @@
 ﻿namespace SPOEmulators
 {
     using System;
-using Microsoft.QualityTools.Testing.Fakes;
-using Microsoft.SharePoint.Client;
-using SPOEmulators.EmulatedTypes;
-    //using SPOEmulators.EmulatedTypes;
+    using Microsoft.QualityTools.Testing.Fakes;
+    using Microsoft.SharePoint.Client;
+    using SPOEmulators.EmulatedTypes;
+
 
     /// <summary>
     /// The emulation context for SharePoint emulation.
     /// </summary>
     public class SPOEmulationContext : IDisposable
     {
-        readonly IDisposable shimsContext;
-        readonly IsolationLevel isolationLevel;
-        ClientContext clientContext;
-        bool disposed;
+        readonly IDisposable    _shimsContext;
+        readonly IsolationLevel _isolationLevel;
+        ClientContext           _clientContext;
+        bool                    _disposed;
 
         /// <summary>
         /// Gets the isolation level.
@@ -27,7 +27,7 @@ using SPOEmulators.EmulatedTypes;
             [System.Diagnostics.DebuggerStepThrough]
             get
             {
-                return isolationLevel;
+                return _isolationLevel;
             }
         }
 
@@ -42,7 +42,7 @@ using SPOEmulators.EmulatedTypes;
             [System.Diagnostics.DebuggerStepThrough]
             get
             {
-                return clientContext;
+                return _clientContext;
             }
         }
 
@@ -61,13 +61,13 @@ using SPOEmulators.EmulatedTypes;
         /// <param name="isolationLevel">The level.</param>
         public SPOEmulationContext(IsolationLevel isolationLevel, string url)
         {
-            this.isolationLevel = isolationLevel;
+            this._isolationLevel = isolationLevel;
 
             switch (isolationLevel)
             {
                 case IsolationLevel.Fake:
                     // create shim context
-                    shimsContext = ShimsContext.Create();
+                    _shimsContext = ShimsContext.Create();
 
                     // initialize all simulated types
                     InitializeSimulatedAPI();
@@ -75,11 +75,13 @@ using SPOEmulators.EmulatedTypes;
                     // Set reference to the simulated site and web in the context
                     //site = SPContext.Current.Site;
                     // web = SPContext.Current.Web;
-                    clientContext = new SimClientContext().Instance;
+                    _clientContext = new SimClientContext().Instance;
                     break;
                 case IsolationLevel.Integration:
                     // create shim context
-                    shimsContext = ShimsContext.Create();
+                    _shimsContext = ShimsContext.Create();
+
+                    _clientContext = new ClientContext(url);
 
                     // Load the real spite and spweb objects from sharpoint
                     //site = new SPSite(url);
@@ -93,9 +95,7 @@ using SPOEmulators.EmulatedTypes;
                     //};
                     break;
                 case IsolationLevel.None:
-                    // Do not use shimscontext or any kind of fake. Load the real spite and spweb objects from sharpoint.
-                    //site = new SPSite(url);
-                    //web = site.OpenWeb();
+                    _clientContext = new ClientContext(url);
                     break;
                 default:
                     throw new InvalidOperationException();
@@ -153,12 +153,15 @@ using SPOEmulators.EmulatedTypes;
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (!_disposed)
             {
-                if (shimsContext != null)
-                    shimsContext.Dispose();
+                if (_clientContext != null)
+                    _clientContext.Dispose();
 
-                disposed = true;
+                if (_shimsContext != null)
+                    _shimsContext.Dispose();
+
+                _disposed = true;
             }
         }
     }
