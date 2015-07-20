@@ -98,7 +98,8 @@
             shimWeb.IdGet = (() => this.ID);
             shimWeb.UrlGet = (() => this.Url);
             shimWeb.TitleGet = (() => this.Title);
-
+            shimWeb.TitleSetString = ((s) => this.title = s);
+            shimWeb.Update = () => { };
 
             this.Fake = shimWeb;
         }

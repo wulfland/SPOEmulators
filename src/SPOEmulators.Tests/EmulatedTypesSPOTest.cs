@@ -43,6 +43,7 @@ namespace SPOEmulators.Tests
 
                 // set title to something different
                 context.ClientContext.Web.Title = "A new Title that is applied";
+                context.ClientContext.Web.Update();
                 context.ClientContext.ExecuteQuery();
 
                 context.ClientContext.Load(context.ClientContext.Web, w => w.Title);
@@ -51,6 +52,7 @@ namespace SPOEmulators.Tests
 
                 // set title back
                 context.ClientContext.Web.Title = originalTitle;
+                context.ClientContext.Web.Update();
                 context.ClientContext.ExecuteQuery();
             }
         }

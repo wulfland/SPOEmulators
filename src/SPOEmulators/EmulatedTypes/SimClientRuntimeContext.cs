@@ -32,9 +32,28 @@
 
             // http://sharepoint.stackexchange.com/questions/73538/mocking-client-object-models-clientcontext-with-moles
             var shimClientRuntimeContext = new ShimClientRuntimeContext(instance);
-            shimClientRuntimeContext.LoadOf1M0ExpressionOfFuncOfM0ObjectArray<Web>((a, b) => { });
+
+            SetDefaultLoadFor<Site>(shimClientRuntimeContext);
+            SetDefaultLoadFor<Web>(shimClientRuntimeContext);
+            SetDefaultLoadFor<List>(shimClientRuntimeContext);
+            SetDefaultLoadFor<User>(shimClientRuntimeContext);
 
             this.Fake = shimClientRuntimeContext;
+        }
+
+        private static void SetDefaultLoadFor<T>(ShimClientRuntimeContext shimClientRuntimeContext) where T : ClientObject
+        {
+            shimClientRuntimeContext.LoadOf1M0ExpressionOfFuncOfM0ObjectArray<T>((a, b) =>
+            {
+            });
+            shimClientRuntimeContext.LoadQueryOf1ClientObjectCollectionOfM0<T>(delegate
+            {
+                return null;
+            });
+            shimClientRuntimeContext.LoadQueryOf1IQueryableOfM0<T>(delegate
+            {
+                return null;
+            });
         }
 
         public static SimClientRuntimeContext FromInstance(ClientRuntimeContext instance)
