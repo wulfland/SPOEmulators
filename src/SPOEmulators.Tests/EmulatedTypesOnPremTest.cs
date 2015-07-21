@@ -10,7 +10,7 @@ namespace SPOEmulators.Tests
         string _url = Settings.Default.OnPremUrl; 
 
         [TestMethod]
-        public void SimClientContext_creates_Web_for_fake()
+        public void SimClientContext_creates_Web_for_integration_onprem()
         {
             using (var context = new SPOEmulationContext(_isolationLevel, _url))
             {

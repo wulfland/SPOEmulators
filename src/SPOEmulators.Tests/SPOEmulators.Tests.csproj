@@ -118,6 +118,9 @@
     <Fakes Include="Fakes\Microsoft.SharePoint.Client.fakes" />
   </ItemGroup>
   <ItemGroup>
+    <Fakes Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="app.config.sample" />
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

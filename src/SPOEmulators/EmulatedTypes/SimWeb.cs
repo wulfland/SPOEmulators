@@ -13,10 +13,12 @@
 
     internal class SimWeb : Isolator<Web, ShimWeb>, IInstanced<Web>, IInstanced
     {
-
-        private Guid? id;
-        private string title;
-        private string url;
+        private readonly SimListCollection _lists;
+        
+        
+        private Guid? _id;
+        private string _title;
+        private string _url;
 
         public User CurrentUser
         {
@@ -35,11 +37,11 @@
         {
             get
             {
-                return this.url;
+                return this._url;
             }
             private set
             {
-                this.url = value;
+                this._url = value;
             }
         }
 
@@ -47,11 +49,11 @@
         {
             get
             {
-                return this.title;
+                return this._title;
             }
             set
             {
-                this.title = value;
+                this._title = value;
             }
         }
 
@@ -59,15 +61,23 @@
         {
             get
             {
-                if (!this.id.HasValue)
+                if (!this._id.HasValue)
                 {
-                    this.id = new Guid?(Guid.NewGuid());
+                    this._id = new Guid?(Guid.NewGuid());
                 }
-                return this.id.Value;
+                return this._id.Value;
             }
             set
             {
-                this.id = new Guid?(value);
+                this._id = new Guid?(value);
+            }
+        }
+
+        public SimListCollection Lists
+        {
+            get
+            {
+                return _lists;
             }
         }
 
@@ -93,13 +103,15 @@
         public SimWeb(Web instance)
             : base(instance)
         {
+            _lists = new SimListCollection();
 
             var shimWeb = new ShimWeb(instance);
             shimWeb.IdGet = (() => this.ID);
             shimWeb.UrlGet = (() => this.Url);
             shimWeb.TitleGet = (() => this.Title);
-            shimWeb.TitleSetString = ((s) => this.title = s);
+            shimWeb.TitleSetString = ((s) => this._title = s);
             shimWeb.Update = () => { };
+            shimWeb.ListsGet = () => _lists.Instance;
 
             this.Fake = shimWeb;
         }

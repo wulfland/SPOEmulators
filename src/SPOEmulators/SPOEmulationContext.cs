@@ -116,38 +116,8 @@
         private static void InitializeSimulatedAPI()
         {
             SimClientContext.Initialize();
-            SimClientContext.Initialize();
+            SimClientRuntimeContext.Initialize();
             SimWeb.Initialize();
-
-            //SimHttpContext.Initialize();
-            //SimHttpRequest.Initialize();
-            //SimHttpResponse.Initialize();
-            //SimSPContext.Initialize();
-            //SimSPEventPropertiesBase.Initialize();
-            //SimSPField.Initialize();
-            //SimSPFieldCollection.Initialize();
-            //SimSPFieldIndex.Initialize();
-            //SimSPFieldIndexCollection.Initialize();
-            //SimSPFieldLink.Initialize();
-            //SimSPFieldLinkCollection.Initialize();
-            //SimSPFieldUrlValue.Initialize();
-            //SimSPFile.Initialize();
-            //SimSPFileCollection.Initialize();
-            //SimSPFolder.Initialize();
-            //SimSPFolderCollection.Initialize();
-            //SimSPItem.Initialize();
-            //SimSPItemEventDataCollection.Initialize();
-            //SimSPItemEventProperties.Initialize();
-            //SimSPList.Initialize();
-            //SimSPListCollection.Initialize();
-            //SimSPListEventProperties.Initialize();
-            //SimSPListItem.Initialize();
-            //SimSPListItemCollection.Initialize();
-            //SimSPSecurableObject.Initialize();
-            //SimSPSecurity.Initialize();
-            //SimSPSite.Initialize();
-            //SimSPWeb.Initialize();
-            //SimSPWebCollection.Initialize();
         }
 
         /// <summary>
@@ -167,7 +137,7 @@
         {
             if (!_disposed)
             {
-                if (_clientContext != null)
+                if (_clientContext != null && _isolationLevel != IsolationLevel.Fake)
                     _clientContext.Dispose();
 
                 if (_shimsContext != null)
