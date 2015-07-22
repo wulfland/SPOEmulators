@@ -30,7 +30,6 @@
             : base(instance)
         {
 
-            // http://sharepoint.stackexchange.com/questions/73538/mocking-client-object-models-clientcontext-with-moles
             var shimClientRuntimeContext = new ShimClientRuntimeContext(instance);
 
             SetDefaultLoadFor<Site>(shimClientRuntimeContext);
@@ -38,6 +37,10 @@
             SetDefaultLoadFor<List>(shimClientRuntimeContext);
             SetDefaultLoadFor<User>(shimClientRuntimeContext);
             SetDefaultLoadFor<Field>(shimClientRuntimeContext);
+            SetDefaultLoadFor<FieldCollection>(shimClientRuntimeContext);
+            SetDefaultLoadFor<ListItem>(shimClientRuntimeContext);
+            SetDefaultLoadFor<ListItemCollection>(shimClientRuntimeContext);
+
 
             this.Fake = shimClientRuntimeContext;
 

@@ -106,12 +106,15 @@
     <Compile Include="CollectionIsolator.cs" />
     <Compile Include="ConnectionInformation.cs" />
     <Compile Include="EmulatedTypes\SimClientContext.cs" />
+    <Compile Include="EmulatedTypes\SimClientObjectCollection.cs" />
     <Compile Include="EmulatedTypes\SimClientRuntimeContext.cs" />
     <Compile Include="EmulatedTypes\SimField.cs" />
     <Compile Include="EmulatedTypes\SimFieldCollection.cs" />
     <Compile Include="EmulatedTypes\SimFieldNumber.cs" />
     <Compile Include="EmulatedTypes\SimList.cs" />
     <Compile Include="EmulatedTypes\SimListCollection.cs" />
+    <Compile Include="EmulatedTypes\SimListItem.cs" />
+    <Compile Include="EmulatedTypes\SimListItemCollection.cs" />
     <Compile Include="EmulatedTypes\SimWeb.cs" />
     <Compile Include="ICanIsolate.cs" />
     <Compile Include="IsolationLevel.cs" />

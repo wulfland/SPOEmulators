@@ -62,8 +62,8 @@
                     xmlReader.MoveToAttribute("DisplayName");
                     var title = xmlReader.Value;
 
-                    field.InternalName = name ?? title;
-                    field.Title = title ?? name;
+                    field.InternalName = string.IsNullOrEmpty(name) ? title : name;
+                    field.Title = string.IsNullOrEmpty(title) ? name : title;
                 }
 
                 base.Add(field.Instance);

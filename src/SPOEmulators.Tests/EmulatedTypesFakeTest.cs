@@ -1,4 +1,5 @@
 ﻿using Microsoft.SharePoint.Client;
+using Microsoft.SharePoint.Client.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SPOEmulators.Tests
@@ -98,6 +99,10 @@ namespace SPOEmulators.Tests
  </Query>
 </View>"
                 };
+
+                // caml queries are not yet supported
+                context.SetQueryResultsForFakeList(list, item);
+
                 var items = list.GetItems(query);
                 context.ClientContext.Load(items);
                 context.ClientContext.ExecuteQuery();

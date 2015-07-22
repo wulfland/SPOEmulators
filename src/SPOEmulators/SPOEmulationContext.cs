@@ -83,33 +83,34 @@
 
                     // initialize all simulated types
                     InitializeSimulatedAPI();
-
-                    // Set reference to the simulated site and web in the context
-                    //site = SPContext.Current.Site;
-                    // web = SPContext.Current.Web;
                     _clientContext = new SimClientContext().Instance;
                     break;
                 case IsolationLevel.Integration:
                     // create shim context
                     _shimsContext = ShimsContext.Create();
                     Connect(connectionInformation);
-
-                    // Load the real spite and spweb objects from sharpoint
-                    //site = new SPSite(url);
-                    //web = site.OpenWeb();
-
-                    // Inject the real webs to the context using shims.
-                    //ShimSPContext.CurrentGet = () => new ShimSPContext
-                    //{
-                    //    SiteGet = () => this.site,
-                    //    WebGet = () => this.web
-                    //};
                     break;
                 case IsolationLevel.None:
                     Connect(connectionInformation);
                     break;
                 default:
                     throw new InvalidOperationException();
+            }
+        }
+
+        public void SetQueryResultsForFakeList(List instance, Func<CamlQuery, ListItemCollection> query)
+        {
+            if (_isolationLevel == SPOEmulators.IsolationLevel.Fake)
+            {
+                SimList.SetQueryResults(instance, query);
+            }
+        }
+
+        public void SetQueryResultsForFakeList(List instance, params ListItem[] items)
+        {
+            if (_isolationLevel == SPOEmulators.IsolationLevel.Fake)
+            {
+                SimList.SetQueryResults(instance, items);
             }
         }
 
