@@ -2,17 +2,27 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>$version$</version>
+    <version>$version$-Pre</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>http://writeabout.net</licenseUrl>
     <projectUrl>https://github.com/wulfland/SPOEmulators</projectUrl>
-    <iconUrl>https://github.com/wulfland/SPOEmulators/blob/master/src/SPOEmulators/SPOEmulators_Logo_32_32.png</iconUrl>
+    <iconUrl>https://github.com/wulfland/SPOEmulators/blob/master/src/SPOEmulators/SPOEmulators_Logo_32_32.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>A initial draft with only a view emulated types.</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>SharePoint O365 Office365 Apps Fake CSOM</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.SharePoint.Client" targetFramework="" />
+      <frameworkAssembly assemblyName="Microsoft.SharePoint.Client.Runtime" targetFramework="" />
+    </frameworkAssemblies>
   </metadata>
+  <files>
+    <file src="tools\init.ps1" target="tools" />
+    <file src="tools\install.ps1" target="tools" />
+    <file src="Fakes\Microsoft.SharePoint.Client.fakes" target="content\Fakes" />
+    <file src="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" target="content\Fakes" />
+  </files>
 </package>

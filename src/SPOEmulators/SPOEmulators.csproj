@@ -123,14 +123,21 @@
     <Compile Include="SPOEmulationContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SPOEmulators_Logo.png" />
-    <Content Include="SPOEmulators_Logo_32_32.png" />
+    <None Include="SPOEmulators_Logo.png" />
+    <None Include="SPOEmulators_Logo_32_32.png" />
   </ItemGroup>
   <ItemGroup>
     <Fakes Include="Fakes\Microsoft.SharePoint.Client.fakes" />
     <Fakes Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />
     <None Include="SPOEmulators.nuspec" />
+    <None Include="tools\init.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="tools\install.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(SolutionDir)..\lib\nuget.exe pack $(ProjectPath) -OutputDirectory $(TargetDir) -BasePath $(ProjectDir)</PostBuildEvent>
