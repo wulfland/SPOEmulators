@@ -37,8 +37,11 @@
             SetDefaultLoadFor<Web>(shimClientRuntimeContext);
             SetDefaultLoadFor<List>(shimClientRuntimeContext);
             SetDefaultLoadFor<User>(shimClientRuntimeContext);
+            SetDefaultLoadFor<Field>(shimClientRuntimeContext);
 
             this.Fake = shimClientRuntimeContext;
+
+            this.Fake.CastToOf1ClientObject<FieldNumber>((i) => new SimFieldNumber(i).Instance);
         }
 
         private static void SetDefaultLoadFor<T>(ShimClientRuntimeContext shimClientRuntimeContext) where T : ClientObject

@@ -57,6 +57,8 @@
             var shimRuntimeClientContext = new SimClientRuntimeContext(this.Instance);
 
             this.Fake = shimClientContext;
+
+            
         }
 
         public static SimClientContext FromInstance(ClientContext instance)

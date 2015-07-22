@@ -7,11 +7,18 @@
 
     internal class SimList : Isolator<List, ShimList>
     {
+        readonly SimFieldCollection _fields = new SimFieldCollection();
+
         public string Description { get; set; }
 
         public string Title { get; set; }
 
         public bool EnableVersioning { get; set; }
+
+        public SimFieldCollection Fields
+        {
+            get { return _fields; }
+        }
 
         public SimList()
             : this(ShimRuntime.CreateUninitializedInstance<List>())
@@ -29,7 +36,9 @@
                 DescriptionSetString = (s) => this.Description = s,
                 EnableVersioningGet = () => this.EnableVersioning,
                 EnableVersioningSetBoolean = (b) => this.EnableVersioning = b,
-                Update = () => { }
+                Update = () => { },
+                FieldsGet = () => this.Fields.Instance,
+
             };
         }
 
@@ -38,6 +47,11 @@
         public static SimList FromInstance(List instance)
         {
             return InstancedPool.CastAsInstanced<List, SimList>(instance);
+        }
+
+        internal static void Initialize()
+        {
+            ShimList.BehaveAsNotImplemented();
         }
     }
 }

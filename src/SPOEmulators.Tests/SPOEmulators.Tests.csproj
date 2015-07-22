@@ -115,10 +115,14 @@
     <Fakes Include="Fakes\mscorlib.fakes" />
   </ItemGroup>
   <ItemGroup>
-    <Fakes Include="Fakes\Microsoft.SharePoint.Client.fakes" />
+    <Fakes Include="..\SPOEmulators\Fakes\Microsoft.SharePoint.Client.fakes">
+      <Link>Fakes\Microsoft.SharePoint.Client.fakes</Link>
+    </Fakes>
   </ItemGroup>
   <ItemGroup>
-    <Fakes Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />
+    <Fakes Include="..\SPOEmulators\Fakes\Microsoft.SharePoint.Client.Runtime.fakes">
+      <Link>Fakes\Microsoft.SharePoint.Client.Runtime.fakes</Link>
+    </Fakes>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config.sample" />
