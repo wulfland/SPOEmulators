@@ -25,7 +25,7 @@ namespace CSOMSample.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Fake")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Integration")]
         public global::SPOEmulators.IsolationLevel IsolationLevel {
             get {
                 return ((global::SPOEmulators.IsolationLevel)(this["IsolationLevel"]));
@@ -34,7 +34,7 @@ namespace CSOMSample.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://alegrivm.sharepoint.com")]
         public string Url {
             get {
                 return ((string)(this["Url"]));
@@ -43,7 +43,7 @@ namespace CSOMSample.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("username")]
+        [global::System.Configuration.DefaultSettingValueAttribute("mikek@alegriVM.onmicrosoft.com")]
         public string User {
             get {
                 return ((string)(this["User"]));
@@ -52,7 +52,7 @@ namespace CSOMSample.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("****")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DaLe1sKeP0H$")]
         public string Password {
             get {
                 return ((string)(this["Password"]));

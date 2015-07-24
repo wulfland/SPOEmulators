@@ -11,12 +11,12 @@
 
     internal class SimListItemCollection : CollectionIsolator<ListItem, ListItemCollection, ShimListItemCollection>
     {
-       public SimListItemCollection()
+        public SimListItemCollection()
             : this(ShimRuntime.CreateUninitializedInstance<ListItemCollection>())
         {
         }
 
-       public SimListItemCollection(ListItemCollection instance)
+        public SimListItemCollection(ListItemCollection instance)
             : base(instance)
         {
             this.Fake.GetByIdInt32 = (id) => Get(i => i.Id == id);
@@ -31,10 +31,14 @@
 
         public new SimListItem CreateItem()
         {
-            return new SimListItem
+            var item = new SimListItem
             {
                 ListItems = this
             };
+
+            this.Add(item.Instance);
+
+            return item;
         }
 
         private ListItem Get(Func<ListItem, bool> predicate)

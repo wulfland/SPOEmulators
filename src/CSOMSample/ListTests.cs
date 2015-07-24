@@ -1,4 +1,5 @@
 ﻿using System;
+using CSOMSample.Properties;
 using Microsoft.SharePoint.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SPOEmulators;
@@ -8,72 +9,105 @@ namespace CSOMSample
     [TestClass]
     public class ListTests
     {
-        [TestMethod]
-        public void SimWeb_can_work_with_list_fake()
+        IsolationLevel _isolationLevel = Settings.Default.IsolationLevel;
+        ConnectionInformation _connectionInformation = new ConnectionInformation
         {
-            using (var context = new SPOEmulationContext(IsolationLevel.Fake))
+            Url = new Uri(Settings.Default.Url)
+        };
+
+        public ListTests()
+        {
+            if (_isolationLevel != IsolationLevel.Fake)
             {
-                var web = context.ClientContext.Web;
+                _connectionInformation.UserName = Settings.Default.User;
+                _connectionInformation.SetPassword(Settings.Default.Password);
+            }
+        }
 
-                // Create a list
-                var listInfo = new ListCreationInformation
-                {
-                    Title = "A custom list",
-                    TemplateType = (int)ListTemplateType.GenericList
-                };
-                var list = web.Lists.Add(listInfo);
-                list.Description = "A custom description...";
-                list.EnableVersioning = true;
-                list.Update();
+        [TestMethod]
+        public void ProvisioningEngine_creates_default_list()
+        {
+            using (var context = new SPOEmulationContext(_isolationLevel, _connectionInformation))
+            {
+                var sut = new ProvisioningEngine();
+                sut.CreateDefaultList(context.ClientContext, context.ClientContext.Web);
+
+                var result = context.ClientContext.Web.Lists.GetByTitle("Default List");
+                context.ClientContext.Load(result);
                 context.ClientContext.ExecuteQuery();
 
-                // Add a field
-                var field = list.Fields.AddFieldAsXml("<Field DisplayName='My Number' Type='Number' />", true, AddFieldOptions.DefaultValue);
-                var numberField = context.ClientContext.CastTo<FieldNumber>(field);
-                numberField.MaximumValue = 1000;
-                numberField.MinimumValue = 10;
-                numberField.Update();
-                context.ClientContext.Load(field, f => f.InternalName);
+                Assert.IsNotNull(result);
+                Assert.AreEqual("A default list that is provisioned.", result.Description);
+                Assert.IsTrue(result.EnableVersioning);
+
+
+                // Delete list if we do integration testing
+                if (_isolationLevel != IsolationLevel.Fake)
+                {
+                    result.DeleteObject();
+                    context.ClientContext.ExecuteQuery();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void ProvisioningEngine_default_list_contains_fields()
+        {
+            using (var context = new SPOEmulationContext(_isolationLevel, _connectionInformation))
+            {
+                var sut = new ProvisioningEngine();
+                sut.CreateDefaultList(context.ClientContext, context.ClientContext.Web);
+
+                var result = context.ClientContext.Web.Lists.GetByTitle("Default List");
+                context.ClientContext.Load(result);
                 context.ClientContext.ExecuteQuery();
 
-                // Add a list item
-                var itemInfo = new ListItemCreationInformation
-                {
-                    LeafName = "List Item 1"
-                };
-                var item = list.AddItem(itemInfo);
-                item[field.InternalName] = 100;
-                item.Update();
+                // Check that the list contains fields.
+                var field1 = result.Fields.GetByTitle("My Number1");
+                var field2 = result.Fields.GetByTitle("My Number2");
+                context.ClientContext.Load(field1);
+                context.ClientContext.Load(field2);
                 context.ClientContext.ExecuteQuery();
+                Assert.IsNotNull(field1);
+                Assert.IsNotNull(field2);
 
-                // Query list and retrieve item
-                var query = new CamlQuery
+                // Delete list if we do integration testing
+                if (_isolationLevel != IsolationLevel.Fake)
                 {
-                    ViewXml = @"<View>
- <Query>
-  <Where>
-   <Eq>
-    <FieldRef Name='Title' />
-    <Value Type='Text'>List Item 1</Value>
-   </Eq>
-  </Where>
- </Query>
-</View>"
-                };
+                    result.DeleteObject();
+                    context.ClientContext.ExecuteQuery();
+                }
+            }
+        }
 
-                // caml queries are not yet supported
-                context.SetQueryResultsForFakeList(list, item);
+        [TestMethod]
+        public void ProvisioningEngine_adds_default_data()
+        {
+            using (var context = new SPOEmulationContext(_isolationLevel, _connectionInformation))
+            {
+                var sut = new ProvisioningEngine();
+                // ensure the list
+                sut.CreateDefaultList(context.ClientContext, context.ClientContext.Web);
+                var list = context.ClientContext.Web.Lists.GetByTitle("Default List");
+                context.ClientContext.Load(list);
 
+                // add items to list
+                sut.AddDeaultData(context.ClientContext, list);
+
+                // reload items validate
+                var query = CamlQuery.CreateAllItemsQuery();
                 var items = list.GetItems(query);
                 context.ClientContext.Load(items);
                 context.ClientContext.ExecuteQuery();
 
-                Assert.AreEqual(1, items.Count);
+                Assert.AreEqual(5, items.Count);
 
-                // Clean up and delete list
-                var listToDelete = web.Lists.GetByTitle("A custom list");
-                listToDelete.DeleteObject();
-                context.ClientContext.ExecuteQuery();
+                // Delete list if we do integration testing
+                if (_isolationLevel != IsolationLevel.Fake)
+                {
+                    list.DeleteObject();
+                    context.ClientContext.ExecuteQuery();
+                }
             }
         }
     }

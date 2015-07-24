@@ -63,10 +63,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ProvisioningEngine.cs" />
     <Compile Include="TestCategory.cs" />
     <Compile Include="WebTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.Fake.config" />
+    <None Include="app.Integration.config" />
     <None Include="app.config" />
     <Fakes Include="Fakes\Microsoft.SharePoint.Client.fakes" />
     <Fakes Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />

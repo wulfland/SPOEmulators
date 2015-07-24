@@ -40,6 +40,7 @@
             SetDefaultLoadFor<FieldCollection>(shimClientRuntimeContext);
             SetDefaultLoadFor<ListItem>(shimClientRuntimeContext);
             SetDefaultLoadFor<ListItemCollection>(shimClientRuntimeContext);
+            SetDefaultLoadFor<FieldNumber>(shimClientRuntimeContext);
 
 
             this.Fake = shimClientRuntimeContext;

@@ -36,25 +36,34 @@
         protected SimList(List instance)
             : base(instance)
         {
-            new ShimList(instance)
-            {
-                TitleGet = () => this.Title,
-                TitleSetString = (s) => this.Title = s,
-                DescriptionGet = () => this.Description,
-                DescriptionSetString = (s) => this.Description = s,
-                EnableVersioningGet = () => this.EnableVersioning,
-                EnableVersioningSetBoolean = (b) => this.EnableVersioning = b,
-                Update = () => { },
-                FieldsGet = () => this.Fields.Instance,
-                AddItemListItemCreationInformation = (ListItemCreationInformation properties) => 
+
+            this.Fake.TitleGet = () => this.Title;
+            this.Fake.TitleSetString = (s) => this.Title = s;
+            this.Fake.DescriptionGet = () => this.Description;
+            this.Fake.DescriptionSetString = (s) => this.Description = s;
+            this.Fake.EnableVersioningGet = () => this.EnableVersioning;
+            this.Fake.EnableVersioningSetBoolean = (b) => this.EnableVersioning = b;
+            this.Fake.Update = () => { };
+            this.Fake.FieldsGet = () => this.Fields.Instance;
+            this.Fake.AddItemListItemCreationInformation = (ListItemCreationInformation properties) => 
                 {
                     var item = Items.CreateItem();
                     item.DisplayName = properties.LeafName;
                     item.Id = _items.Count + 1;
 
                     return item.Instance;
-                },
-                DeleteObject = () => { }
+                };
+            this.Fake.DeleteObject = () => { };
+            this.Fake.GetItemsCamlQuery = (q) => 
+            {
+                if (q.ViewXml == CamlQuery.CreateAllItemsQuery().ViewXml)
+                {
+                    return this.Items.Instance;
+                }
+                else
+                {
+                    return new ShimListItemCollection().Instance;
+                }
             };
         }
 
