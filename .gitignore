@@ -28,7 +28,7 @@ bld/
 TestResult.xml
 
 #App.config
-[Aa]pp.config
+*[Aa]pp.config
 
 # Build Results of an ATL Project
 [Dd]ebugPS/
