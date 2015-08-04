@@ -7,20 +7,6 @@
 
     internal class SimClientRuntimeContext : Isolator<ClientRuntimeContext, ShimClientRuntimeContext>, IInstanced<ClientRuntimeContext>, IInstanced
     {
-        public new ShimClientRuntimeContext Fake
-        {
-            get;
-            private set;
-        }
-
-        public new ClientRuntimeContext Instance
-        {
-            get
-            {
-                return (ClientRuntimeContext)base.Instance;
-            }
-        }
-
         public SimClientRuntimeContext()
             : this(ShimRuntime.CreateUninitializedInstance<ClientRuntimeContext>())
         {
@@ -30,22 +16,25 @@
             : base(instance)
         {
 
-            var shimClientRuntimeContext = new ShimClientRuntimeContext(instance);
-
-            SetDefaultLoadFor<Site>(shimClientRuntimeContext);
-            SetDefaultLoadFor<Web>(shimClientRuntimeContext);
-            SetDefaultLoadFor<List>(shimClientRuntimeContext);
-            SetDefaultLoadFor<User>(shimClientRuntimeContext);
-            SetDefaultLoadFor<Field>(shimClientRuntimeContext);
-            SetDefaultLoadFor<FieldCollection>(shimClientRuntimeContext);
-            SetDefaultLoadFor<ListItem>(shimClientRuntimeContext);
-            SetDefaultLoadFor<ListItemCollection>(shimClientRuntimeContext);
-            SetDefaultLoadFor<FieldNumber>(shimClientRuntimeContext);
-
-
-            this.Fake = shimClientRuntimeContext;
+            SetDefaultLoadFor<Site>(this.Fake);
+            SetDefaultLoadFor<Web>(this.Fake);
+            SetDefaultLoadFor<List>(this.Fake);
+            SetDefaultLoadFor<User>(this.Fake);
+            SetDefaultLoadFor<Field>(this.Fake);
+            SetDefaultLoadFor<FieldCollection>(this.Fake);
+            SetDefaultLoadFor<ListItem>(this.Fake);
+            SetDefaultLoadFor<ListItemCollection>(this.Fake);
+            SetDefaultLoadFor<FieldNumber>(this.Fake);
 
             this.Fake.CastToOf1ClientObject<FieldNumber>((i) => new SimFieldNumber(i).Instance);
+
+            this.Fake.CredentialsGet = () =>
+            { 
+                return this.Instance.Credentials; 
+            };
+            this.Fake.CredentialsSetICredentials = (credential) =>
+            {
+            };
         }
 
         private static void SetDefaultLoadFor<T>(ShimClientRuntimeContext shimClientRuntimeContext) where T : ClientObject

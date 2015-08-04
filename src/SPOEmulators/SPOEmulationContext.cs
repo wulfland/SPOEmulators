@@ -83,7 +83,7 @@
 
                     // initialize all simulated types
                     InitializeSimulatedAPI();
-                    _clientContext = new SimClientContext().Instance;
+                    _clientContext = new SimClientContext(connectionInformation.Url).Instance;
                     break;
                 case IsolationLevel.Integration:
                     // create shim context
@@ -119,6 +119,8 @@
             SimClientContext.Initialize();
             SimClientRuntimeContext.Initialize();
             SimWeb.Initialize();
+            SimListItemCollection.Initialize();
+            SimListCollection.Initialize();
         }
 
         /// <summary>

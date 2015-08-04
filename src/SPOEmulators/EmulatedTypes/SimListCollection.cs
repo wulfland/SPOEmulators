@@ -23,11 +23,9 @@
         public SimListCollection(ListCollection instance) 
             : base(instance)
         {
-            new Microsoft.SharePoint.Client.Fakes.ShimClientObjectCollection(base.Fake)
-            {
-            };
+            //new SimClientObjectCollection(base.Fake);
 
-            base.Fake.Bind(this);
+            //base.Fake.Bind(this);
             base.Fake.GetByIdGuid = (id) => 
             { 
                 return this.GetList((list) => list.Id == id).Instance; 
@@ -87,6 +85,11 @@
             base.Add(list.Instance);
 
             return list;
+        }
+
+        public static void Initialize()
+        {
+            ShimListCollection.BehaveAsNotImplemented();
         }
     }
 }

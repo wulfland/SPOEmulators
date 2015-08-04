@@ -49,7 +49,7 @@
         public SimFieldCollection(FieldCollection instance)
             : base(instance)
         {
-            this.Fake.Bind(this);
+            //this.Fake.Bind(this);
 
             this.Fake.AddFieldAsXmlStringBooleanAddFieldOptions = (string schema, bool addToView, AddFieldOptions options) =>
             {

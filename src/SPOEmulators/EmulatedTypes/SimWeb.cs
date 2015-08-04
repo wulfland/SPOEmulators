@@ -11,7 +11,7 @@
     using Microsoft.SharePoint.Client;
     using Microsoft.SharePoint.Client.Fakes;
 
-    internal class SimWeb : Isolator<Web, ShimWeb>, IInstanced<Web>, IInstanced
+    internal class SimWeb : Isolator<Web, ShimWeb>
     {
         private readonly SimListCollection _lists;
         
@@ -19,6 +19,8 @@
         private Guid? _id;
         private string _title;
         private string _url;
+
+        public ShimSite Site { get; set; }
 
         public User CurrentUser
         {
@@ -39,7 +41,7 @@
             {
                 return this._url;
             }
-            private set
+            set
             {
                 this._url = value;
             }
@@ -56,6 +58,8 @@
                 this._title = value;
             }
         }
+
+        public string Description { get; set; }
 
         public Guid ID
         {
@@ -81,20 +85,6 @@
             }
         }
 
-        public new ShimWeb Fake
-        {
-            get;
-            private set;
-        }
-
-        public new Web Instance
-        {
-            get
-            {
-                return (Web)base.Instance;
-            }
-        }
-
         public SimWeb()
             : this(ShimRuntime.CreateUninitializedInstance<Web>())
         {
@@ -105,15 +95,16 @@
         {
             _lists = new SimListCollection();
 
-            var shimWeb = new ShimWeb(instance);
-            shimWeb.IdGet = (() => this.ID);
-            shimWeb.UrlGet = (() => this.Url);
-            shimWeb.TitleGet = (() => this.Title);
-            shimWeb.TitleSetString = ((s) => this._title = s);
-            shimWeb.Update = () => { };
-            shimWeb.ListsGet = () => _lists.Instance;
+            this.Fake.IdGet = (() => this.ID);
+            this.Fake.UrlGet = (() => this.Url);
+            this.Fake.TitleGet = (() => this.Title);
+            this.Fake.TitleSetString = ((s) => this._title = s);
+            this.Fake.DescriptionGet = () => this.Description;
+            this.Fake.DescriptionSetString = (s) => this.Description = s;
+            this.Fake.Update = () => { };
+            this.Fake.ListsGet = () => _lists.Instance;
 
-            this.Fake = shimWeb;
+            this.Site = new ShimSite();
         }
 
         public static SimWeb FromInstance(Web instance)

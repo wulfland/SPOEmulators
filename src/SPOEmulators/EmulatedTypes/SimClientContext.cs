@@ -1,5 +1,6 @@
 ﻿namespace SPOEmulators.EmulatedTypes
 {
+    using System;
     using Microsoft.QualityTools.Testing.Fakes.Instances;
     using Microsoft.QualityTools.Testing.Fakes.Shims;
     using Microsoft.SharePoint.Client;
@@ -7,58 +8,28 @@
 
     internal class SimClientContext : Isolator<ClientContext, ShimClientContext>, IInstanced<ClientContext>, IInstanced
     {
-        Web _web;
+        public Web Web { get; set; }
 
-        public Web Web
-        {
-            get
-            {
-                if (this._web == null)
-                {
-                    this._web = SimClientContext.CreateWeb();
-                }
+        public Site Site { get; set; }
 
-                return this._web;
-            }
-
-            set
-            {
-                this._web = value;
-            }
-        }
-
-        public new ShimClientContext Fake
-        {
-            get;
-            private set;
-        }
-
-        public new ClientContext Instance
-        {
-            get
-            {
-                return (ClientContext)base.Instance;
-            }
-        }
-
-        public SimClientContext()
-            : this(ShimRuntime.CreateUninitializedInstance<ClientContext>())
+        public SimClientContext(Uri url)
+            : this(ShimRuntime.CreateUninitializedInstance<ClientContext>(), url)
         {
         }
 
-        public SimClientContext(ClientContext instance)
+        public SimClientContext(ClientContext instance, Uri url)
             : base(instance)
-        {
+        {            
+            var simSite = new SimSite(url);
+            this.Web = simSite.CurrentWeb.Instance;
+            this.Site = simSite.Instance;
 
-            var shimClientContext = new ShimClientContext(instance);
-            shimClientContext.ExecuteQuery = () => { };
-            shimClientContext.WebGet = () => this.Web;
+
+            this.Fake.ExecuteQuery = () => { };
+            this.Fake.WebGet = () => this.Web;
+            this.Fake.SiteGet = () => this.Site;
 
             var shimRuntimeClientContext = new SimClientRuntimeContext(this.Instance);
-
-            this.Fake = shimClientContext;
-
-            
         }
 
         public static SimClientContext FromInstance(ClientContext instance)
@@ -69,6 +40,15 @@
         internal static void Initialize()
         {
             ShimClientContext.BehaveAsNotImplemented();
+
+            ShimClientContext.ConstructorString = (context, url) =>
+            {
+                new SimClientContext(context, new Uri(url));
+            };
+            ShimClientContext.ConstructorUri = (context, uri) =>
+            {
+                new SimClientContext(context, uri);
+            };
         }
 
         static Web CreateWeb()
