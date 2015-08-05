@@ -6,7 +6,7 @@ License: [MIT](https://github.com/wulfland/SPOEmulators/blob/master/LICENSE, "MI
 ## Description
 SPOEmulators is a framework that helps you to write unit- and integration tests against Office 365 or SharePoint on premise using the client side object model (CSOM). It uses the Microsoft Fakes Framework to emulate the SharePoint or O365 CSOM.  
 
-The benefit is, that you an write your tests against the real backend as integraton tests. If your code works you can add a little more effort to convert the test to an isolated unit test. Like this it executes much faster and yu do not have to wrestle with passwords in your app.config file. To ensure that the code still works you can add a seperate config file on your test machine an execute the same test as an integration test.   
+The benefit is, that you an write your tests against the real backend as integration tests. If your code works you can add a little more effort to convert the test to an isolated unit test. Like this it executes much faster and you do not have to wrestle with passwords in your app.config file. To ensure that the code still works you can add a separate config file on your test machine an execute the same test as an integration test.   
 
 >Note the framework is still a __beta__. Don't expect everything to be emulated! Please report bugs, issues and feature requests as git hub issues.
 
