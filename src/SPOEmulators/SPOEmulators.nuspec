@@ -6,7 +6,7 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>http://writeabout.net</licenseUrl>
+    <licenseUrl>https://github.com/wulfland/SPOEmulators/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/wulfland/SPOEmulators</projectUrl>
     <iconUrl>https://github.com/wulfland/SPOEmulators/blob/master/src/SPOEmulators/SPOEmulators_Logo_32_32.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

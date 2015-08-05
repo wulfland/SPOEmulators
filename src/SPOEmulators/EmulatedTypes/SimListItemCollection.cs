@@ -29,7 +29,7 @@
             };
         }
 
-        public new SimListItem CreateItem()
+        public SimListItem CreateItem()
         {
             var item = new SimListItem
             {
