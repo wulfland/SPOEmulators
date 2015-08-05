@@ -124,6 +124,7 @@
     <Compile Include="Isolator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SPOEmulationContext.cs" />
+    <Compile Include="UrlUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SPOEmulators_Logo.png" />

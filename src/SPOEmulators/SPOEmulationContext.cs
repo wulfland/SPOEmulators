@@ -82,8 +82,7 @@
                     _shimsContext = ShimsContext.Create();
 
                     // initialize all simulated types
-                    InitializeSimulatedAPI();
-                    _clientContext = new SimClientContext(connectionInformation.Url).Instance;
+                    _clientContext = InitializeSimulatedAPI(connectionInformation.Url);
                     break;
                 case IsolationLevel.Integration:
                     // create shim context
@@ -114,13 +113,15 @@
             }
         }
 
-        private static void InitializeSimulatedAPI()
+        private static ClientContext InitializeSimulatedAPI(Uri url)
         {
-            SimClientContext.Initialize();
+            var context = SimClientContext.Initialize(url);
             SimClientRuntimeContext.Initialize();
             SimWeb.Initialize();
             SimListItemCollection.Initialize();
             SimListCollection.Initialize();
+
+            return context;
         }
 
         /// <summary>

@@ -14,8 +14,9 @@
     internal class SimWeb : Isolator<Web, ShimWeb>
     {
         private readonly SimListCollection _lists;
-        
-        
+        private readonly SimWebCollection _webs;
+
+
         private Guid? _id;
         private string _title;
         private string _url;
@@ -46,6 +47,8 @@
                 this._url = value;
             }
         }
+
+        public string ServerRelativeUrl { get; set; }
 
         public string Title
         {
@@ -94,15 +97,20 @@
             : base(instance)
         {
             _lists = new SimListCollection();
+            _webs = new SimWebCollection(this);
 
             this.Fake.IdGet = (() => this.ID);
             this.Fake.UrlGet = (() => this.Url);
+            this.Fake.ServerRelativeUrlGet = () => this.ServerRelativeUrl;
+            this.Fake.ServerRelativeUrlSetString = (s) => this.ServerRelativeUrl = s;
             this.Fake.TitleGet = (() => this.Title);
             this.Fake.TitleSetString = ((s) => this._title = s);
             this.Fake.DescriptionGet = () => this.Description;
             this.Fake.DescriptionSetString = (s) => this.Description = s;
             this.Fake.Update = () => { };
             this.Fake.ListsGet = () => _lists.Instance;
+            this.Fake.WebsGet = () => _webs.Instance;
+            this.Fake.DeleteObject = () => { };
 
             this.Site = new ShimSite();
         }

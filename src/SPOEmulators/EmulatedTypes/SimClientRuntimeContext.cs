@@ -35,6 +35,9 @@
             this.Fake.CredentialsSetICredentials = (credential) =>
             {
             };
+
+            this.Fake.Dispose = () => { };
+            this.Fake.DisposeBoolean = (b) => { };
         }
 
         private static void SetDefaultLoadFor<T>(ShimClientRuntimeContext shimClientRuntimeContext) where T : ClientObject

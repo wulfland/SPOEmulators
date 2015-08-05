@@ -68,10 +68,5 @@
                 InstancedPool.RegisterInstanced(this);
             }
         }
-
-        protected virtual TItem CreateItem()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

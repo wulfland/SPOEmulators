@@ -11,8 +11,8 @@
 
     internal class SimSite : Isolator<Site, ShimSite>
     {
-        SimAudit _audit;
-        SimWebCollection _webs = new SimWebCollection();
+        private SimAudit _audit;
+        private SimWebCollection _webs;
         // EventReceivers
         // Features
         // CustomActions
@@ -60,7 +60,6 @@
             };
             Fake.OpenWebString = (url) =>
             {
-                // todo: check url format
                 return OpenWeb((w) => w.Url == url);
             };
             Fake.OwnerGet = () => Owner;
@@ -71,21 +70,33 @@
             //Fake.UrlGet = () => Url;
             Fake.UserCustomActionsGet = () => UserCustomActions;
 
-            this.RootWeb = new SimWeb 
-            {
-                Site = Fake, 
-                Title = "Team Site"
-            };
-
-            _webs.Add(RootWeb.Instance);
-
             this.CurrentWeb = new SimWeb
             {
                 Site = Fake,
-                Title = "Team Site"
+                Title = "Team Site",
+                Url = siteUrl.AbsoluteUri.TrimEnd('/'),
+                ServerRelativeUrl = siteUrl.AbsolutePath
             };
-
+            _webs = new SimWebCollection(CurrentWeb);
             _webs.Add(CurrentWeb.Instance);
+
+            if (UrlUtility.IsUrlRootWeb(siteUrl))
+            {
+                this.RootWeb = CurrentWeb;
+            }
+            else
+            {
+                var rootUrl = UrlUtility.GetRootWebUri(siteUrl);
+                this.RootWeb = new SimWeb
+                {
+                    Site = Fake,
+                    Title = "Team Site",
+                    Url = rootUrl.AbsoluteUri.TrimEnd('/'),
+                    ServerRelativeUrl = rootUrl.AbsolutePath
+                };
+
+                _webs.Add(RootWeb.Instance);
+            }
         }
 
         public bool AllowCreateDeclarativeWorkflow { get; set; }
@@ -135,18 +146,16 @@
 
         public UserCustomActionCollection UserCustomActions { get; set; }
 
+        public User Owner { get; set; }
+
         public Web OpenWeb(Func<Web, bool> predicate)
         {
-            return _webs.First(predicate);
+            return _webs.FirstOrDefault(predicate);
         }
 
         private List GetCatalog(int typeCatalog)
         {
             return new ShimList().Instance;
         }
-
-
-        public User Owner { get; set; }
-
     }
 }
