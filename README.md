@@ -38,6 +38,7 @@ None | The same like integration but with absolute nothing enabled. No `ShimsCon
 
 
 ## Sample
+You can find a [sample project](https://github.com/wulfland/SPOEmulators/tree/master/src/CSOMSample, "CSOMSample") in the source code. The sample also provide sample config files for integration and unit testing.  
 ```csharp
     [TestClass]
     public class WebTests
