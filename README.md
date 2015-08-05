@@ -11,7 +11,11 @@ The benefit is, that you an write your tests against the real backend as integra
 >Note the framework is still a __beta__. Don't expect everything to be emulated! Please report bugs, issues and feature requests as git hub issues.
 
 ## Installation
-SPOEmulators are available via nuget. Make sure to include prereleases and install the package SPOEmulators.
+SPOEmulators are available via nuget. Make sure to include prereleases and install the package SPOEmulators. You can install the package with the following command at the Package Manager Console:
+
+```powershell
+Install-Package SPOEmulators -IncludePrerelease
+```
 
 ## Prerequisits
 SPOEmulators depend on the Microsoft Fakes Framework. This was only available in Visual Studio 2012 in the Ultimate Edition until Update 3. In later Versions it is available in the Premium and Enterprise edition.
