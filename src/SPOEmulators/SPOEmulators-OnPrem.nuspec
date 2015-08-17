@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SPOEmulators15</id>
+    <version>0.1.0-Pre</version>
+    <title>SPOEmulators (on-premises)</title>
+    <authors>Michael Kaufmann</authors>
+    <owners>Michael Kaufmann</owners>
+    <licenseUrl>https://github.com/wulfland/SPOEmulators/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/wulfland/SPOEmulators</projectUrl>
+    <iconUrl>https://github.com/wulfland/SPOEmulators/blob/master/src/SPOEmulators/SPOEmulators_Logo_32_32.png?raw=true</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A package to emulate SharePoint CSOM.</description>
+    <releaseNotes>A initial draft with only a view emulated types.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>SharePoint O365 Office365 Apps Fake CSOM</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.SharePoint.Client, Version=15.0.0.0" targetFramework="" />
+      <frameworkAssembly assemblyName="Microsoft.SharePoint.Client.Runtime, Version=15.0.0.0" targetFramework="" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="tools\init.ps1" target="tools" />
+    <file src="tools\install.ps1" target="tools" />
+    <file src="Fakes15\Microsoft.SharePoint.Client.fakes" target="content\Fakes" />
+    <file src="Fakes15\Microsoft.SharePoint.Client.Runtime.fakes" target="content\Fakes" />
+  </files>
+</package>

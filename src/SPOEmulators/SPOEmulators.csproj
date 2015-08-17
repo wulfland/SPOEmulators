@@ -66,18 +66,20 @@
         <Reference Include="Microsoft.SharePoint.Client, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
           <SpecificVersion>True</SpecificVersion>
           <HintPath>..\lib\Assemblies\16\Microsoft.SharePoint.Client.dll</HintPath>
+          <Private>True</Private>
         </Reference>
         <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
           <SpecificVersion>True</SpecificVersion>
           <HintPath>..\lib\Assemblies\16\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+          <Private>True</Private>
         </Reference>
         <Reference Include="Microsoft.SharePoint.Client.16.0.0.0.Fakes">
-          <SpecificVersion>False</SpecificVersion>
           <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.16.0.0.0.Fakes.dll</HintPath>
         </Reference>
         <Reference Include="Microsoft.SharePoint.Client.Runtime.16.0.0.0.Fakes">
           <SpecificVersion>False</SpecificVersion>
           <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.Runtime.16.0.0.0.Fakes.dll</HintPath>
+          <Private>True</Private>
         </Reference>
       </ItemGroup>
     </When>
@@ -86,18 +88,22 @@
         <Reference Include="Microsoft.SharePoint.Client, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
           <SpecificVersion>True</SpecificVersion>
           <HintPath>..\lib\Assemblies\15\Microsoft.SharePoint.Client.dll</HintPath>
+          <Private>True</Private>
         </Reference>
         <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
           <SpecificVersion>True</SpecificVersion>
           <HintPath>..\lib\Assemblies\15\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+          <Private>True</Private>
         </Reference>
         <Reference Include="Microsoft.SharePoint.Client.15.0.0.0.Fakes">
           <SpecificVersion>False</SpecificVersion>
           <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.15.0.0.0.Fakes</HintPath>
+          <Private>True</Private>
         </Reference>
         <Reference Include="Microsoft.SharePoint.Client.Runtime.15.0.0.0.Fakes">
           <SpecificVersion>False</SpecificVersion>
           <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.Runtime.15.0.0.0.Fakes.dll</HintPath>
+          <Private>True</Private>
         </Reference>
       </ItemGroup>
     </Otherwise>
@@ -127,12 +133,19 @@
     <Compile Include="UrlUtility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Fakes Include="Fakes\Microsoft.SharePoint.Client.fakes" />
+    <Fakes Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Fakes15\Microsoft.SharePoint.Client.fakes" />
+    <None Include="Fakes15\Microsoft.SharePoint.Client.Runtime.fakes" />
+    <None Include="Fakes16\Microsoft.SharePoint.Client.fakes" />
+    <None Include="Fakes16\Microsoft.SharePoint.Client.Runtime.fakes" />
+    <None Include="SPOEmulators-OnPrem.nuspec" />
     <None Include="SPOEmulators_Logo.png" />
     <None Include="SPOEmulators_Logo_32_32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Fakes Include="Fakes\Microsoft.SharePoint.Client.fakes" />
-    <Fakes Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />
     <None Include="SPOEmulators.nuspec" />
     <None Include="tools\init.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -144,6 +157,31 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)..\lib\nuget.exe pack $(ProjectPath) -OutputDirectory $(TargetDir) -BasePath $(ProjectDir)</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release (
+$(SolutionDir)..\lib\nuget.exe pack $(ProjectPath) -OutputDirectory $(TargetDir) -BasePath $(ProjectDir)
+)
+
+if $(ConfigurationName) == Release15 (
+$(SolutionDir)..\lib\nuget.exe pack $(ProjectDir)SPOEmulators-OnPrem.nuspec  -OutputDirectory $(TargetDir) -BasePath $(ProjectDir)
+)</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>ECHO $(ConfigurationName) == Release
+if $(ConfigurationName) == Release15 (
+ECHO Copy 15 fake files...
+copy /y $(ProjectDir)Fakes15\* $(ProjectDir)Fakes\
+)
+if $(ConfigurationName) == Debug15 (
+ECHO Copy 15 fake files...
+copy /y $(ProjectDir)Fakes15\* $(ProjectDir)Fakes\
+)
+if $(ConfigurationName) == Release (
+ECHO Copy 16 fake files...
+copy /y $(ProjectDir)Fakes16\* $(ProjectDir)Fakes\
+)
+if $(ConfigurationName) == Debug (
+ECHO Copy 16 fake files...
+copy /y $(ProjectDir)Fakes16\* $(ProjectDir)Fakes\
+)</PreBuildEvent>
   </PropertyGroup>
 </Project>

@@ -11,15 +11,11 @@
 
         public string InternalName { get; set; }
 
-        public bool AutoIndexed { get; set; }
-
         public bool CanBeDeleted { get; set; }
 
         public string DefaultValue { get; set; }
 
         public string Description { get; set; }
-
-        public UserResource DescriptionResource { get; set; }
 
         public string Direction { get; set; }
 
@@ -65,11 +61,17 @@
 
         public string Title { get; set; }
 
-        public UserResource TitleResource { get; set; }
-
         public string ValidationFormula { get; set; }
 
         public string ValidationMessage { get; set; }
+
+#if !CLIENTSDKV15
+        public bool AutoIndexed { get; set; }
+
+        public UserResource DescriptionResource { get; set; }
+
+        public UserResource TitleResource { get; set; }
+#endif
 
         public SimField()
             : this(ShimRuntime.CreateUninitializedInstance<Field>())
@@ -80,14 +82,11 @@
             : base(instance)
         {
             this.Description = string.Empty;
-
-            this.Fake.AutoIndexedGet = () => this.AutoIndexed;
             this.Fake.CanBeDeletedGet = () => this.CanBeDeleted;
             this.Fake.DefaultValueGet = () => this.DefaultValue;
             this.Fake.DefaultValueSetString = (s) => this.DefaultValue = s;
             this.Fake.DeleteObject = () => this.Delete();
             this.Fake.DescriptionGet = () => this.Description;
-            this.Fake.DescriptionResourceGet = () => this.DescriptionResource;
             this.Fake.DescriptionSetString = (s) => this.Description = s;
             this.Fake.DirectionGet = () => this.Direction;
             this.Fake.DirectionSetString = (s) => this.Direction = s;
@@ -125,12 +124,16 @@
             this.Fake.StaticNameSetString = (s) => this.InternalName = s;
             this.Fake.TitleGet = () => this.Title;
             this.Fake.TitleSetString = (s) => this.Title = s;
-            this.Fake.TitleResourceGet = () => this.TitleResource;
             this.Fake.ValidationFormulaGet = () => this.ValidationFormula;
             this.Fake.ValidationFormulaSetString = (s) => this.ValidationFormula = s;
             this.Fake.ValidationMessageGet = () => this.ValidationMessage;
             this.Fake.ValidationMessageSetString = (s) => this.ValidationMessage = s;
 
+#if !CLIENTSDKV15
+            this.Fake.AutoIndexedGet = () => this.AutoIndexed;
+            this.Fake.DescriptionResourceGet = () => this.DescriptionResource;
+            this.Fake.TitleResourceGet = () => this.TitleResource;
+#endif
 
             this.Fake.Update = () => { };
             this.Fake.UpdateAndPushChangesBoolean = (b) => { };

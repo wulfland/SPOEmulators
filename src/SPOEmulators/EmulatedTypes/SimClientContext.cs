@@ -16,8 +16,9 @@
 
         public Version ServerVersion { get; set; }
 
+#if !CLIENTSDKV15
         public RequestResources RequestResources { get; set; }
-
+#endif
         public SimClientContext(Uri url)
             : this(ShimRuntime.CreateUninitializedInstance<ClientContext>(), url)
         {
@@ -32,8 +33,9 @@
             this.Fake.WebGet = () => this.Web;
 
             this.Fake.ServerVersionGet = () => this.ServerVersion;
+#if !CLIENTSDKV15
             this.Fake.RequestResourcesGet = () => this.RequestResources;
-
+#endif
             var shimRuntimeClientContext = new SimClientRuntimeContext(this.Instance);
 
             if (_current == null)
