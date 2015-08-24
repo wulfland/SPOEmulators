@@ -141,12 +141,13 @@
     <None Include="Fakes15\Microsoft.SharePoint.Client.Runtime.fakes" />
     <None Include="Fakes16\Microsoft.SharePoint.Client.fakes" />
     <None Include="Fakes16\Microsoft.SharePoint.Client.Runtime.fakes" />
-    <None Include="SPOEmulators-OnPrem.nuspec" />
     <None Include="SPOEmulators_Logo.png" />
     <None Include="SPOEmulators_Logo_32_32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SPOEmulators.nuspec" />
+    <None Include="SPOEmulators.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="tools\init.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -158,11 +159,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Release (
-$(SolutionDir)..\lib\nuget.exe pack $(ProjectPath) -OutputDirectory $(TargetDir) -BasePath $(ProjectDir)
+$(SolutionDir)..\lib\nuget.exe pack $(ProjectPath) -OutputDirectory $(TargetDir) -BasePath $(ProjectDir) -verbose
 )
 
 if $(ConfigurationName) == Release15 (
-$(SolutionDir)..\lib\nuget.exe pack $(ProjectDir)SPOEmulators-OnPrem.nuspec  -OutputDirectory $(TargetDir) -BasePath $(ProjectDir)
+$(SolutionDir)..\lib\nuget.exe pack $(ProjectDir)SPOEmulators-OnPrem.nuspec  -OutputDirectory $(TargetDir) -BasePath $(ProjectDir) -verbose
 )</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

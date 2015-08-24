@@ -24,5 +24,6 @@
     <file src="tools\install.ps1" target="tools" />
     <file src="Fakes15\Microsoft.SharePoint.Client.fakes" target="content\Fakes" />
     <file src="Fakes15\Microsoft.SharePoint.Client.Runtime.fakes" target="content\Fakes" />
+    <file src="bin\Release15\SPOEmulators.dll" target="lib\net45\SPOEmulators.dll" />
   </files>
 </package>

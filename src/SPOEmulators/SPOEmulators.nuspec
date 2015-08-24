@@ -14,7 +14,12 @@
     <releaseNotes>A initial draft with only a view emulated types.</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>SharePoint O365 Office365 Apps Fake CSOM</tags>
+    <dependencies>
+      <dependency id="Microsoft.SharePointOnline.CSOM" version="16.1.3912.1204" />
+    </dependencies>
     <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="" />
       <frameworkAssembly assemblyName="Microsoft.SharePoint.Client" targetFramework="" />
       <frameworkAssembly assemblyName="Microsoft.SharePoint.Client.Runtime" targetFramework="" />
     </frameworkAssemblies>
@@ -22,7 +27,8 @@
   <files>
     <file src="tools\init.ps1" target="tools" />
     <file src="tools\install.ps1" target="tools" />
-    <file src="Fakes\Microsoft.SharePoint.Client.fakes" target="content\Fakes" />
-    <file src="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" target="content\Fakes" />
+    <file src="Fakes16\Microsoft.SharePoint.Client.fakes" target="content\Fakes" />
+    <file src="Fakes16\Microsoft.SharePoint.Client.Runtime.fakes" target="content\Fakes" />
+    <file src="bin\Release\SPOEmulators.dll" target="lib\net45\SPOEmulators.dll" />
   </files>
 </package>
