@@ -1,6 +1,6 @@
 # SPOEmulators (beta)
 Autor: Mike Kaufmann (http://writeabout.net)  
-Version: 0.1-pre (__beta__)  
+Version: 0.2-pre (__beta__)  
 License: [MIT](https://github.com/wulfland/SPOEmulators/blob/master/LICENSE, "MIT license") 
 
 ## Description
