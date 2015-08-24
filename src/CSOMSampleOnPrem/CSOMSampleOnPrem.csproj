@@ -37,8 +37,8 @@
   <ItemGroup>
     <Reference Include="Microsoft.SharePoint.Client, Version=15.0.0.0" />
     <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=15.0.0.0" />
-    <Reference Include="SPOEmulators, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SPOEmulators15.0.1.0-Pre\lib\net45\SPOEmulators.dll</HintPath>
+    <Reference Include="SPOEmulators, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SPOEmulators15.0.2.0-Pre\lib\net45\SPOEmulators.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -68,9 +68,9 @@
     <Compile Include="WebTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <Fakes Include="Fakes\Microsoft.SharePoint.Client.fakes" />
     <Fakes Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />
-    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
