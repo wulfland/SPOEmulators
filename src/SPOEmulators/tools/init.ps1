@@ -1,4 +1,4 @@
-﻿function Get-Version
+function Get-Version
 {
     return [int]$DTE.Version
 }
@@ -25,8 +25,8 @@ function init
 	    throw "This package requires minimum Visual Studio 2012."
     }
 
-    # Since VS2012 it is available in the PremiumEdition
-    if (($Version -ge 11) -and ($Version -lt 14))
+    # Since VS2012 it is available in the Premium Edition
+    if ($Version -eq 11)
     {
         $BuildNumber = Get-BuildNumber
         if ($BuildNumber -ge 60315)
@@ -44,6 +44,15 @@ function init
 		        throw "This package requires minimum the Ultimate Edition of Visual Studio 2012 if you have not updated to Update 2."
 	        }
         }
+    }
+
+    # In VS 2013 Fakes is supported in Premium and Ultimate
+    if ($Version -eq 12)
+    {
+        if (-not (($Edition -eq “Premium”) -or ($Edition -eq “Ultimate”)))
+        {
+		    throw "This package requires minimum the Premium Edition of Visual Studio 2013."
+	    }
     }
 
     # In VS2015 Fakes is supported in Enterprise and Premium 
