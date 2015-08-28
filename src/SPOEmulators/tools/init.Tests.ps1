@@ -1,4 +1,4 @@
-﻿$here = Split-Path -Parent $MyInvocation.MyCommand.Path
+$here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
 . "$here\$sut"
 
@@ -52,6 +52,27 @@ Describe "init" {
 
         It "is valid edition 'Premium'" {
             { init } | Should Not Throw
+        }
+    }
+
+    Context "Visual Studio 2013"{
+        Mock Get-Version { return 12 }
+        Mock Get-Edition { return "Premium" }
+
+        It "is valid edition 'Premium'" {
+            { init } | Should Not Throw
+        }
+
+        Mock Get-Edition { return "Ultimate" }
+
+        It "is valid edition 'Ultimate'" {
+            { init } | Should Not Throw
+        }
+
+        Mock Get-Edition { return "Professional" }
+
+        It "throws excetion for edition 'Professional'" {
+            { init } | Should Throw "This package requires minimum the Premium Edition of Visual Studio 2013."
         }
     }
 
