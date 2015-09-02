@@ -32,7 +32,7 @@ function init
         if ($BuildNumber -ge 60315)
         {
 	
-	        if (-not (($Edition -eq “Premium”) -or ($Edition -eq “Ultimate”)))
+	        if (-not (($Edition -eq "Premium") -or ($Edition -eq "Ultimate")))
             {
 		        throw "This package requires minimum the Premium Edition of Visual Studio 2012 Update 2."
 	        }
@@ -49,7 +49,7 @@ function init
     # In VS 2013 Fakes is supported in Premium and Ultimate
     if ($Version -eq 12)
     {
-        if (-not (($Edition -eq “Premium”) -or ($Edition -eq “Ultimate”)))
+        if (-not (($Edition -eq "Premium") -or ($Edition -eq "Ultimate")))
         {
 		    throw "This package requires minimum the Premium Edition of Visual Studio 2013."
 	    }
@@ -58,7 +58,7 @@ function init
     # In VS2015 Fakes is supported in Enterprise and Premium 
     if ($Version -ge 14)
     {
-        if (-not ($Edition -eq “Enterprise”))
+        if (-not ($Edition -eq "Enterprise"))
         {
 		    throw "This package requires minimum the Enterprise Edition of Visual Studio 2015."
 	    }
