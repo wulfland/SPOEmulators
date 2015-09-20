@@ -76,7 +76,7 @@
         <Reference Include="Microsoft.SharePoint.Client.16.1.3912.1204.Fakes">
           <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.16.1.3912.1204.Fakes.dll</HintPath>
         </Reference>
-        <Reference Include="Microsoft.SharePoint.Client.Runtime.16.1.3912.1204..Fakes">
+        <Reference Include="Microsoft.SharePoint.Client.Runtime.16.1.3912.1204.Fakes">
           <SpecificVersion>False</SpecificVersion>
           <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.Runtime.16.1.3912.1204.Fakes.dll</HintPath>
           <Private>True</Private>

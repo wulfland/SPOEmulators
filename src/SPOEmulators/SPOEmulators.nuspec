@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>0.3.0-Pre</version>
+    <version>0.3.2-Pre</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -11,7 +11,7 @@
     <iconUrl>https://github.com/wulfland/SPOEmulators/blob/master/src/SPOEmulators/SPOEmulators_Logo_32_32.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>A initial draft with only a view emulated types.</releaseNotes>
+    <releaseNotes>A initial draft with only a few emulated types.</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>SharePoint O365 Office365 Apps Fake CSOM</tags>
     <dependencies>
