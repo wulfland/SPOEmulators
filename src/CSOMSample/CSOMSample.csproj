@@ -87,8 +87,8 @@
       <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.3912.1204\lib\net45\Microsoft.SharePoint.Client.WorkflowServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SPOEmulators, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SPOEmulators.0.2.0-Pre\lib\net45\SPOEmulators.dll</HintPath>
+    <Reference Include="SPOEmulators, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SPOEmulators.0.2.2-Pre\lib\net45\SPOEmulators.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
