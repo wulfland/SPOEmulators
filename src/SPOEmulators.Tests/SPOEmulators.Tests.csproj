@@ -103,6 +103,7 @@
     <Compile Include="SPOEmulationContextTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UrlUtilityTest.cs" />
+    <Compile Include="UserPrincipalTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SPOEmulators\SPOEmulators.csproj">

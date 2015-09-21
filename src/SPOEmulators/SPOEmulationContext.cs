@@ -117,6 +117,7 @@
         {
             var context = SimClientContext.Initialize(url);
             SimClientRuntimeContext.Initialize();
+            SimUser.Initialize();
             SimWeb.Initialize();
             SimListItemCollection.Initialize();
             SimListCollection.Initialize();

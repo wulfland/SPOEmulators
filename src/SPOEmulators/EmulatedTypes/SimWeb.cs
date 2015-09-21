@@ -1,15 +1,10 @@
 ﻿namespace SPOEmulators.EmulatedTypes
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using Microsoft.QualityTools.Testing.Fakes;
     using Microsoft.QualityTools.Testing.Fakes.Instances;
     using Microsoft.QualityTools.Testing.Fakes.Shims;
     using Microsoft.SharePoint.Client;
     using Microsoft.SharePoint.Client.Fakes;
+    using System;
 
     internal class SimWeb : Isolator<Web, ShimWeb>
     {
@@ -23,7 +18,7 @@
 
         public ShimSite Site { get; set; }
 
-        public User CurrentUser
+        public SimUser CurrentUser
         {
             get;
             set;
@@ -111,8 +106,10 @@
             this.Fake.ListsGet = () => _lists.Instance;
             this.Fake.WebsGet = () => _webs.Instance;
             this.Fake.DeleteObject = () => { };
+            this.Fake.CurrentUserGet = () => this.CurrentUser.Instance;
 
             this.Site = new ShimSite();
+            this.CurrentUser = new SimUser();
         }
 
         public static SimWeb FromInstance(Web instance)
