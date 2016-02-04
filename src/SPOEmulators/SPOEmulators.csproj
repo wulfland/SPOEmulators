@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SPOEmulators</RootNamespace>
     <AssemblyName>SPOEmulators</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,7 +52,75 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Client.Policy, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.Office.Client.Policy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Client.TranslationServices, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.Office.Client.TranslationServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.SharePoint.Tools, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.Office.SharePoint.Tools.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Online.SharePoint.Client.Tenant, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.Online.SharePoint.Client.Tenant.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ProjectServer.Client, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.ProjectServer.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.SharePoint.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.16.1.0.0.Fakes">
+      <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.16.1.0.0.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.DocumentManagement, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.SharePoint.Client.DocumentManagement.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Publishing, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.SharePoint.Client.Publishing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime.16.1.0.0.Fakes">
+      <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.Runtime.16.1.0.0.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime.Windows, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.SharePoint.Client.Runtime.Windows.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Search, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.SharePoint.Client.Search.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Search.Applications, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.SharePoint.Client.Search.Applications.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Taxonomy, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.SharePoint.Client.Taxonomy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.UserProfiles, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.SharePoint.Client.UserProfiles.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.WorkflowServices, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.4915.1200\lib\net45\Microsoft.SharePoint.Client.WorkflowServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,54 +129,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-  <Choose>
-    <When Condition=" '$(Configuration)' == 'debug' Or '$(Configuration)' == 'release' ">
-      <ItemGroup>
-        <Reference Include="Microsoft.SharePoint.Client, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-          <SpecificVersion>True</SpecificVersion>
-          <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.3912.1204\lib\net45\Microsoft.SharePoint.Client.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
-        <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-          <SpecificVersion>True</SpecificVersion>
-          <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.3912.1204\lib\net45\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
-        <Reference Include="Microsoft.SharePoint.Client.16.1.3912.1204.Fakes">
-          <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.16.1.3912.1204.Fakes.dll</HintPath>
-        </Reference>
-        <Reference Include="Microsoft.SharePoint.Client.Runtime.16.1.3912.1204.Fakes">
-          <SpecificVersion>False</SpecificVersion>
-          <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.Runtime.16.1.3912.1204.Fakes.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.SharePoint.Client, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-          <SpecificVersion>True</SpecificVersion>
-          <HintPath>..\lib\Assemblies\15\Microsoft.SharePoint.Client.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
-        <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-          <SpecificVersion>True</SpecificVersion>
-          <HintPath>..\lib\Assemblies\15\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
-        <Reference Include="Microsoft.SharePoint.Client.15.0.0.0.Fakes">
-          <SpecificVersion>False</SpecificVersion>
-          <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.15.0.0.0.Fakes</HintPath>
-          <Private>True</Private>
-        </Reference>
-        <Reference Include="Microsoft.SharePoint.Client.Runtime.15.0.0.0.Fakes">
-          <SpecificVersion>False</SpecificVersion>
-          <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.Runtime.15.0.0.0.Fakes.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
   <ItemGroup>
     <Compile Include="CollectionIsolator.cs" />
     <Compile Include="ConnectionInformation.cs" />
@@ -135,14 +156,13 @@
     <Compile Include="UrlUtility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Fakes Include="Fakes\Microsoft.SharePoint.Client.fakes" />
-    <Fakes Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Fakes15\Microsoft.SharePoint.Client.fakes" />
     <None Include="Fakes15\Microsoft.SharePoint.Client.Runtime.fakes" />
     <None Include="Fakes16\Microsoft.SharePoint.Client.fakes" />
     <None Include="Fakes16\Microsoft.SharePoint.Client.Runtime.fakes" />
+    <Fakes Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />
+    <Fakes Include="Fakes\Microsoft.SharePoint.Client.fakes" />
+    <None Include="packages.config" />
     <None Include="SPOEmulators_Logo.png" />
     <None Include="SPOEmulators_Logo_32_32.png" />
   </ItemGroup>
@@ -163,31 +183,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release (
-$(SolutionDir)..\lib\nuget.exe pack $(ProjectPath) -OutputDirectory $(TargetDir) -BasePath $(ProjectDir) -verbose
-)
-
-if $(ConfigurationName) == Release15 (
-$(SolutionDir)..\lib\nuget.exe pack $(ProjectDir)SPOEmulators-OnPrem.nuspec  -OutputDirectory $(TargetDir) -BasePath $(ProjectDir) -verbose
-)</PostBuildEvent>
+    <PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>ECHO $(ConfigurationName) == Release
-if $(ConfigurationName) == Release15 (
-ECHO Copy 15 fake files...
-copy /y $(ProjectDir)Fakes15\* $(ProjectDir)Fakes\
-)
-if $(ConfigurationName) == Debug15 (
-ECHO Copy 15 fake files...
-copy /y $(ProjectDir)Fakes15\* $(ProjectDir)Fakes\
-)
-if $(ConfigurationName) == Release (
-ECHO Copy 16 fake files...
-copy /y $(ProjectDir)Fakes16\* $(ProjectDir)Fakes\
-)
-if $(ConfigurationName) == Debug (
-ECHO Copy 16 fake files...
-copy /y $(ProjectDir)Fakes16\* $(ProjectDir)Fakes\
-)</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
 </Project>
