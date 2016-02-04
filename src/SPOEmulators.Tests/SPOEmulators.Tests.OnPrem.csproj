@@ -106,6 +106,12 @@
     <Compile Include="UserPrincipalTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SPOEmulators\SPOEmulators.csproj">
+      <Project>{c8cfd6f8-9c2e-4fdc-b209-548dcccf20bf}</Project>
+      <Name>SPOEmulators</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Fakes Include="Fakes\System.fakes" />
   </ItemGroup>
   <ItemGroup>

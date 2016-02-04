@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPOEmulators", "SPOEmulators\SPOEmulators.csproj", "{C8CFD6F8-9C2E-4FDC-B209-548DCCCF20BF}"
 EndProject
@@ -15,8 +15,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{3D08033E-A9B6-4D77-A238-F8A384F548E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSOMSample", "CSOMSample\CSOMSample.csproj", "{8AD03E69-2403-4526-B985-428A6BD7B27C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSOMSampleOnPrem", "CSOMSampleOnPrem\CSOMSampleOnPrem.csproj", "{45B4F199-5824-41F6-92A4-B81BCB373635}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,20 +48,11 @@ Global
 		{8AD03E69-2403-4526-B985-428A6BD7B27C}.Release_15|Any CPU.Build.0 = Release|Any CPU
 		{8AD03E69-2403-4526-B985-428A6BD7B27C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AD03E69-2403-4526-B985-428A6BD7B27C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45B4F199-5824-41F6-92A4-B81BCB373635}.Debug_15|Any CPU.ActiveCfg = Debug|Any CPU
-		{45B4F199-5824-41F6-92A4-B81BCB373635}.Debug_15|Any CPU.Build.0 = Debug|Any CPU
-		{45B4F199-5824-41F6-92A4-B81BCB373635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45B4F199-5824-41F6-92A4-B81BCB373635}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45B4F199-5824-41F6-92A4-B81BCB373635}.Release_15|Any CPU.ActiveCfg = Release|Any CPU
-		{45B4F199-5824-41F6-92A4-B81BCB373635}.Release_15|Any CPU.Build.0 = Release|Any CPU
-		{45B4F199-5824-41F6-92A4-B81BCB373635}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45B4F199-5824-41F6-92A4-B81BCB373635}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8AD03E69-2403-4526-B985-428A6BD7B27C} = {3D08033E-A9B6-4D77-A238-F8A384F548E2}
-		{45B4F199-5824-41F6-92A4-B81BCB373635} = {3D08033E-A9B6-4D77-A238-F8A384F548E2}
 	EndGlobalSection
 EndGlobal

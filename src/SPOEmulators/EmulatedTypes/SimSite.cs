@@ -45,9 +45,9 @@
             Fake.AllowSelfServiceUpgradeEvaluationSetBoolean = (b) => AllowSelfServiceUpgradeEvaluation = b;
             Fake.AllowSelfServiceUpgradeGet = () => AllowSelfServiceUpgrade;
             Fake.AllowSelfServiceUpgradeSetBoolean = (b) => AllowSelfServiceUpgrade = b;
-            Fake.AuditGet = () => this.Audit;
-            Fake.AuditLogTrimmingRetentionGet = () => AuditLogTrimmingRetention;
-            Fake.AuditLogTrimmingRetentionSetInt32 = (i) => AuditLogTrimmingRetention = i;
+            //Fake.AuditGet = () => this.Audit;
+            //Fake.AuditLogTrimmingRetentionGet = () => AuditLogTrimmingRetention;
+            //Fake.AuditLogTrimmingRetentionSetInt32 = (i) => AuditLogTrimmingRetention = i;
             Fake.CanUpgradeGet = () => CanUpgrade;
             Fake.CompatibilityLevelGet = () => CompatibilityLevel;
             Fake.EventReceiversGet = () => this.EventReceivers;

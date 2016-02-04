@@ -9,9 +9,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SPOEmulators</RootNamespace>
     <AssemblyName>SPOEmulators</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,27 +31,10 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug15|AnyCPU'">
-    <OutputPath>bin\Debug15\</OutputPath>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE;CLIENTSDKV15</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release15|AnyCPU'">
-    <OutputPath>bin\Release15\</OutputPath>
-    <DefineConstants>CLIENTSDKV15;TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -61,24 +43,25 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-
   <ItemGroup>
-    <Reference Include="Microsoft.SharePoint.Client, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SharePoint.Client, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>True</SpecificVersion>
-      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.3912.1204\lib\net45\Microsoft.SharePoint.Client.dll</HintPath>
+      <HintPath>..\lib\Assemblies\15\Microsoft.SharePoint.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>True</SpecificVersion>
-      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.3912.1204\lib\net45\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+      <HintPath>..\lib\Assemblies\15\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.SharePoint.Client.16.1.3912.1204.Fakes">
-      <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.16.1.3912.1204.Fakes.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SharePoint.Client.Runtime.16.1.3912.1204.Fakes">
+    <Reference Include="Microsoft.SharePoint.Client.15.0.0.0.Fakes">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.Runtime.16.1.3912.1204.Fakes.dll</HintPath>
+      <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.15.0.0.0.Fakes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime.15.0.0.0.Fakes">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>FakesAssemblies\Microsoft.SharePoint.Client.Runtime.15.0.0.0.Fakes.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -109,12 +92,10 @@
     <Compile Include="UrlUtility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Fakes Include="Fakes\Microsoft.SharePoint.Client.fakes" />
-    <Fakes Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Fakes16\Microsoft.SharePoint.Client.fakes" />
-    <None Include="Fakes16\Microsoft.SharePoint.Client.Runtime.fakes" />
+    <None Include="Fakes15\Microsoft.SharePoint.Client.fakes" />
+    <None Include="Fakes15\Microsoft.SharePoint.Client.Runtime.fakes" />
+    <None Include="Fakes\Microsoft.SharePoint.Client.fakes" />
+    <None Include="Fakes\Microsoft.SharePoint.Client.Runtime.fakes" />
     <None Include="SPOEmulators_Logo.png" />
     <None Include="SPOEmulators_Logo_32_32.png" />
   </ItemGroup>
@@ -133,6 +114,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
